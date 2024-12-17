@@ -44,4 +44,9 @@ public class AuthService {
             throw new UsernameNotFoundException("Invalid user access !!");
         }
     }
+
+    public String validToken(String token) {
+        jwtService.validateToken(token);
+        return " Valid Token";
+    }
 }
