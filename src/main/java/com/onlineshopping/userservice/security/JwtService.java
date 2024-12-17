@@ -12,7 +12,6 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "uxo3jOJi3koX6V6GaDft2Ez0iz2K3OWMV6GaDft2Ez0iz2KV6GaDft2Ez0iz2K";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -20,7 +19,7 @@ public class JwtService {
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         Claims claims = Jwts.parser()
-                .setSigningKey(SECRET_KEY)
+                .setSigningKey("uxo3jOJi3koX6V6GaDft2Ez0iz2K3OWMV6GaDft2Ez0iz2KV6GaDft2Ez0iz2K")
                 .parseClaimsJws(token)
                 .getBody();
         return claimsResolver.apply(claims);
@@ -40,7 +39,7 @@ public class JwtService {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, "uxo3jOJi3koX6V6GaDft2Ez0iz2K3OWMV6GaDft2Ez0iz2KV6GaDft2Ez0iz2K")
                 .compact();
     }
 }
