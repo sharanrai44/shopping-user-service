@@ -1,6 +1,4 @@
-package com.onlineshopping.userservice.util;
-
-import lombok.*;
+package com.onlineshopping.remove.util;
 
 
 public class AuthRequest {

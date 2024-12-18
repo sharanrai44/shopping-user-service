@@ -1,6 +1,4 @@
-package com.onlineshopping.userservice.util;
-
-import jakarta.persistence.Column;
+package com.onlineshopping.remove.util;
 
 public class UserCredentialDTO {
 

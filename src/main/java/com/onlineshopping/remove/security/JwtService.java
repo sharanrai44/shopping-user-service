@@ -1,4 +1,4 @@
-package com.onlineshopping.userservice.security;
+package com.onlineshopping.remove.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -40,8 +40,10 @@ public class JwtService {
     }
 
     public String generateToken(String username) {
+        String roles="ROLE_USER,ROLE_ADMIN";
         return Jwts.builder()
                 .setSubject(username)
+                .claim("roles", roles)  // Add the roles claim
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
                 .signWith(SignatureAlgorithm.HS256, Key)

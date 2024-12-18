@@ -1,28 +1,26 @@
-package com.onlineshopping.userservice.model;
+package com.onlineshopping.userservice.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class UserCredential {
-
-    // Fields
+public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = true)
+    private String name;
     private String email;
-
-    @Column(nullable = false)
     private String password;
+    private String roles;
+
 
     public int getId() {
         return id;
@@ -32,12 +30,12 @@ public class UserCredential {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -54,5 +52,13 @@ public class UserCredential {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
