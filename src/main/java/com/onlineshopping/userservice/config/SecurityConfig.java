@@ -30,15 +30,6 @@ public class SecurityConfig {
     @Bean
     //authentication
     public UserDetailsService userDetailsService() {
-//        UserDetails admin = User.withUsername("Basant")
-//                .password(encoder.encode("Pwd1"))
-//                .roles("ADMIN")
-//                .build();
-//        UserDetails user = User.withUsername("John")
-//                .password(encoder.encode("Pwd2"))
-//                .roles("USER","ADMIN","HR")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
         return new UserInfoUserDetailsService();
     }
 
@@ -64,6 +55,7 @@ public class SecurityConfig {
                 // Define endpoint security rules
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll() // Public endpoints
+                        .requestMatchers("/v3/**").permitAll() // Public endpoints
                         .anyRequest().authenticated()           // Secure all other endpoints
                 )
                 // Add custom authentication and exception handling
