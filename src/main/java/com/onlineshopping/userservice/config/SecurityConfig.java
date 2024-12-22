@@ -1,6 +1,7 @@
 package com.onlineshopping.userservice.config;
 
 import com.onlineshopping.userservice.filter.JwtAuthFilter;
+import com.onlineshopping.userservice.service.UserInfoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,18 +36,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//         http.csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests()
-//                .requestMatchers("/products/new","/products/authenticate").permitAll()
-//                .and()
-//                .authorizeHttpRequests().requestMatchers("/products/**")
-//                .authenticated().and()
-//
-//                .and()
-//                .authenticationProvider(authenticationProvider())
-//                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-
         http
                 // Disable CSRF and enable stateless session
                 .csrf(AbstractHttpConfigurer::disable)

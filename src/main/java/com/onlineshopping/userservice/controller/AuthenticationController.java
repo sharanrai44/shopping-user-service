@@ -1,6 +1,7 @@
 package com.onlineshopping.userservice.controller;
 
 import com.onlineshopping.userservice.dto.AuthRequest;
+import com.onlineshopping.userservice.dto.UserDTO;
 import com.onlineshopping.userservice.entity.UserInfo;
 import com.onlineshopping.userservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class AuthenticationController {
     private AuthService authService;
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody UserInfo userInfo) {
-        return authService.saveUser(userInfo);
+    public String addNewUser(@RequestBody UserDTO userDTO) {
+        return authService.saveUser(userDTO);
     }
 
     @PostMapping("/authenticate")
