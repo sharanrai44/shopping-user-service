@@ -1,32 +1,44 @@
 package com.onlineshopping.userservice.controller;
 
+import com.onlineshopping.userservice.dto.ApiResponse;
 import com.onlineshopping.userservice.dto.AuthRequest;
 import com.onlineshopping.userservice.dto.UserDTO;
 import com.onlineshopping.userservice.entity.UserInfo;
 import com.onlineshopping.userservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
 
+    public static final String SUCCESS = "SUCCESS";
+    public static final String ERROR = "ERROR";
     @Autowired
     private AuthService authService;
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody UserDTO userDTO) {
-        return authService.saveUser(userDTO);
+    public ResponseEntity<ApiResponse<String>> addNewUser(@RequestBody UserDTO userDTO) {
+        String response = authService.saveUser(userDTO);
+        ApiResponse<String> apiResponse = new ApiResponse<>(SUCCESS, response, null, "traceId");
+        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 
     @PostMapping("/authenticate")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        return authService.authenticate(authRequest);
+    public ResponseEntity<ApiResponse<String>> authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+        String token = authService.authenticate(authRequest);
+
+        ApiResponse<String> apiResponse = new ApiResponse<>(SUCCESS, token, null, "traceId");
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @GetMapping("/validate")
-    public String getToken(@RequestParam String token) {
-        return authService.validToken(token);
+    public ResponseEntity<ApiResponse<String>> getToken(@RequestParam String token) {
+        String message = authService.validToken(token);
+        ApiResponse<String> apiResponse = new ApiResponse<>(SUCCESS, message, null, "traceId");
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
 
