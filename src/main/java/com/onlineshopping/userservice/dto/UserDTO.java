@@ -1,33 +1,20 @@
-package com.onlineshopping.userservice.entity;
+package com.onlineshopping.userservice.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.onlineshopping.userservice.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+import java.util.List;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserInfo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@AllArgsConstructor
+public class UserDTO {
     private String name;
     private String username;
     private String password;
-    private String roles;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private List<Role> roles;
 
     public String getName() {
         return name;
@@ -53,11 +40,11 @@ public class UserInfo {
         this.password = password;
     }
 
-    public String getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }
